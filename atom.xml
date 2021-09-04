@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-09-03T07:08:54.518Z</updated>
+  <updated>2021-09-03T07:09:49.194Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/08/07/hello-world/"/>
     <id>http://example.com/2021/08/07/hello-world/</id>
     <published>2021-08-07T08:25:24.177Z</published>
-    <updated>2021-09-03T07:08:54.518Z</updated>
+    <updated>2021-09-03T07:09:49.194Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、Servlet：servlet-apple"><a href="#一、Servlet：servlet-apple" class="headerlink" title="一、Servlet：servlet apple"></a>一、Servlet：servlet apple</h2><p>概念：运行在服务器端的小程序</p><p>Servlet就是一个接口，定义了Java类被浏览器访问到（tomcat识别）的规则，将来我们自定义一个类，实现servlet接口，复写方法</p><h3 id="1、快速入门"><a href="#1、快速入门" class="headerlink" title="1、快速入门"></a>1、快速入门</h3><ol><li>创建JavaEE项目</li><li>定义一个类，实现Servlet接口</li><li>实现接口中的抽象方法</li><li>在web文件中配置Servlet</li></ol><p><img src="C:\Users\袁宇平\AppData\Roaming\Typora\typora-user-images\1630570816286.png" alt="1630570816286"></p>]]></content>
     
