@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-09-03T07:09:49.194Z</updated>
+  <updated>2021-09-05T01:14:43.933Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,19 +17,16 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2021/08/07/hello-world/"/>
-    <id>http://example.com/2021/08/07/hello-world/</id>
-    <published>2021-08-07T08:25:24.177Z</published>
-    <updated>2021-09-03T07:09:49.194Z</updated>
+    <title>HTTP</title>
+    <link href="http://example.com/2021/09/04/hello-world/"/>
+    <id>http://example.com/2021/09/04/hello-world/</id>
+    <published>2021-09-03T16:00:00.000Z</published>
+    <updated>2021-09-05T01:14:43.933Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="一、Servlet：servlet-apple"><a href="#一、Servlet：servlet-apple" class="headerlink" title="一、Servlet：servlet apple"></a>一、Servlet：servlet apple</h2><p>概念：运行在服务器端的小程序</p><p>Servlet就是一个接口，定义了Java类被浏览器访问到（tomcat识别）的规则，将来我们自定义一个类，实现servlet接口，复写方法</p><h3 id="1、快速入门"><a href="#1、快速入门" class="headerlink" title="1、快速入门"></a>1、快速入门</h3><ol><li>创建JavaEE项目</li><li>定义一个类，实现Servlet接口</li><li>实现接口中的抽象方法</li><li>在web文件中配置Servlet</li></ol><p><img src="C:\Users\袁宇平\AppData\Roaming\Typora\typora-user-images\1630570816286.png" alt="1630570816286"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="1、Request"><a href="#1、Request" class="headerlink" title="1、Request"></a>1、Request</h3><h5 id="request对象和response对象的原理"><a href="#request对象和response对象的原理" class="headerlink" title="request对象和response对象的原理"></a>request对象和response对象的原理</h5><ol><li>request和response对象是由服务器创建的，我们来使用他们</li><li>request对象是来获取请求消息，response对象是来设置响应消息</li></ol><h3 id="2、request对象继承体系结构"><a href="#2、request对象继承体系结构" class="headerlink" title="2、request对象继承体系结构"></a>2、request对象继承体系结构</h3><p>ServletRequest        –接口</p><p>HttpServletRequest        –接口</p><p>org.apche.catalina.connector.RequestFacade类（tomcat）</p><h3 id="3、request功能"><a href="#3、request功能" class="headerlink" title="3、request功能"></a>3、request功能</h3><h5 id="1、获取请求消息数据"><a href="#1、获取请求消息数据" class="headerlink" title="1、获取请求消息数据"></a>1、获取请求消息数据</h5><ol><li><p>获取请求行数据</p><ol><li>获取请求方式：GET<ol><li>String    getMethod()</li></ol></li><li>获取虚拟目录：/<ol><li>String     getContextPath()</li></ol></li><li>获取Servlet路径：/demo2<ol><li>String     getServletPath()</li></ol></li><li>获取get方式请求参数：name = 输入值<ol><li>String    getQueryString()</li></ol></li><li>获取请求URI：<ol><li>String    getRequestURI():     /day14/demo2</li><li>StringBuffer  getRequestURL()     <a href="http://localhost/day14/demo">http://localhost/day14/demo</a></li></ol></li><li>获取协议及版本：<ol><li>String getProtocol()</li></ol></li><li>获取客户机的IP地址<ol><li>String     getRemoteAddr()</li></ol></li></ol></li><li><p>获取请求头数据</p><ol><li><p>(*)String getHeader(String name)    通过请求头的名称获取请求头的值</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String agent = req.getHeader(<span class="string">&quot;user-agent&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(agent.contains(<span class="string">&quot;Chrome&quot;</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;谷歌来了&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(agent.contains(<span class="string">&quot;Firefox&quot;</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;火狐来了&quot;</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li><li><p>Enumeration<String>   getHeaderNames()    获取所有的请求头名称</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、获取所有请求头名称</span></span><br><span class="line">        Enumeration&lt;String&gt; headerNames = req.getHeaderNames();</span><br><span class="line">        <span class="comment">//2、遍历</span></span><br><span class="line">        <span class="keyword">while</span>(headerNames.hasMoreElements()) &#123;</span><br><span class="line">            String name = headerNames.nextElement();</span><br><span class="line">            <span class="comment">//3、根据名称获取请求头的值</span></span><br><span class="line">            String value = req.getHeader(name);</span><br><span class="line">            System.out.println(name + <span class="string">&quot;---&quot;</span> + value);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li></ol></li><li><p>获取请求体数据</p><ol><li>请求体：只有POST请求方式，才有请求体，在请求体中封装了POST请求参数</li><li>获取流对象<ol><li>BufferedReader    getReader()   获取字符输入流，只能操作字符数据</li><li>ServletInputStream   getInputStream()  获取字节输入流，可以操作所有类型数据</li></ol></li><li></li></ol></li></ol>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;一、Servlet：servlet-apple&quot;&gt;&lt;a href=&quot;#一、Servlet：servlet-apple&quot; class=&quot;headerlink&quot; title=&quot;一、Servlet：servlet apple&quot;&gt;&lt;/a&gt;一、Servlet：servlet</summary>
-      
+    <summary type="html">笔记</summary>
     
     
     
